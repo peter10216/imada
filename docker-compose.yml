@@ -59,3 +59,11 @@ services:
     volumes:
       - "$PWD/blackbox:/config"
     command: --config.file=/config/blackbox.yml
+
+  snmp-exporter:
+    image: prom/snmp-exporter:v0.19.0
+    container_name: snmp-exporter
+    volumes:
+      - $PWD/snmp/snmp.yml:/etc/snmp_exporter/snmp.yml
+    ports:
+      - 9116:9116
