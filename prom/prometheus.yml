@@ -46,3 +46,22 @@ scrape_configs:
         target_label: instance
       - target_label: __address__
         replacement: 192.168.45.150:9115
+##################################################
+# Snmp exporter                                  #
+##################################################
+  - job_name: 'snmp-exporter'
+    static_configs:
+      - labels:
+          type: if_mib
+        targets:
+          - '192.168.45.150'
+    metrics_path: /snmp
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - source_labels: [type]
+        target_label: __param_module
+      - target_label: __address__
+        replacement: '192.168.45.150:9116'
