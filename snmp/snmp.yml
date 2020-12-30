@@ -1,0 +1,69 @@
+cisco:
+  walk:
+  - 1.3.6.1.2.1.2.2.1.16
+  - 1.3.6.1.2.1.2.2.1.20
+  - 1.3.6.1.2.1.31.1.1.1.1
+  - 1.3.6.1.4.1.9.9.109.1.1.1.1.6
+  metrics:
+  - name: ifOutOctets
+    oid: 1.3.6.1.2.1.2.2.1.16
+    type: counter
+    help: The total number of octets transmitted out of the interface, including framing
+      characters - 1.3.6.1.2.1.2.2.1.16
+    indexes:
+    - labelname: ifName
+      type: gauge
+    lookups:
+    - labels:
+      - ifName
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+  - name: ifOutErrors
+    oid: 1.3.6.1.2.1.2.2.1.20
+    type: counter
+    help: For packet-oriented interfaces, the number of outbound packets that could
+      not be transmitted because of errors - 1.3.6.1.2.1.2.2.1.20
+    indexes:
+    - labelname: ifName
+      type: gauge
+    lookups:
+    - labels:
+      - ifName
+      labelname: ifName
+      oid: 1.3.6.1.2.1.31.1.1.1.1
+      type: DisplayString
+  - name: cpmCPUTotal5secRev
+    oid: 1.3.6.1.4.1.9.9.109.1.1.1.1.6
+    type: gauge
+    help: The overall CPU busy percentage in the last 5 second period - 1.3.6.1.4.1.9.9.109.1.1.1.1.6
+    indexes:
+    - labelname: cpmCPUTotalIndex
+      type: gauge
+  version: 2
+  auth:
+    community: ciscopublic
+ubuntu:
+  walk:
+  - 1.3.6.1.2.1.2.2.1.10
+  - 1.3.6.1.2.1.2.2.1.14
+  metrics:
+  - name: ifInOctets
+    oid: 1.3.6.1.2.1.2.2.1.10
+    type: counter
+    help: The total number of octets received on the interface, including framing
+      characters - 1.3.6.1.2.1.2.2.1.10
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+  - name: ifInErrors
+    oid: 1.3.6.1.2.1.2.2.1.14
+    type: counter
+    help: For packet-oriented interfaces, the number of inbound packets that contained
+      errors preventing them from being deliverable to a higher-layer protocol - 1.3.6.1.2.1.2.2.1.14
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+  version: 2
+  auth:
+    community: public
